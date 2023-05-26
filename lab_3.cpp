@@ -16,7 +16,7 @@ struct Node {
     Node* right;
 };
 
-Node* add_node(Node* root, Student student) { //функция добавления нового студента в дерево
+Node* add_node(Node* root, Student student) {  //С„СѓРЅРєС†РёСЏ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРѕРІРѕРіРѕ СЃС‚СѓРґРµРЅС‚Р° РІ РґРµСЂРµРІРѕ
 
     if (!root) {
         root = new Node();
@@ -41,12 +41,12 @@ void search_by_surname(Node* root, string surname) {
         cout << "Surname: " << root->student.surname << endl;
         cout << "Group number: " << root->student.group_num << endl;
         cout << "Grades: ";
-        stack<int> temp = *(root->student.grades); /*Для вывода оценок используется временный стек temp,
-        в котором создается копия стека оценок студента из root->student.grades.
-        Затем элементы стека выводятся на экран с помощью цикла while.*/
+        stack<int> temp = *(root->student.grades); /*Р”Р»СЏ РІС‹РІРѕРґР° РѕС†РµРЅРѕРє РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РІСЂРµРјРµРЅРЅС‹Р№ СЃС‚РµРє temp,
+        РІ РєРѕС‚РѕСЂРѕРј СЃРѕР·РґР°РµС‚СЃСЏ РєРѕРїРёСЏ СЃС‚РµРєР° РѕС†РµРЅРѕРє СЃС‚СѓРґРµРЅС‚Р° РёР· root->student.grades.
+        Р—Р°С‚РµРј СЌР»РµРјРµРЅС‚С‹ СЃС‚РµРєР° РІС‹РІРѕРґСЏС‚СЃСЏ РЅР° СЌРєСЂР°РЅ СЃ РїРѕРјРѕС‰СЊСЋ С†РёРєР»Р° while.*/
         while (!temp.empty()) {
-            cout << temp.top() << " "; //top-верхний элемент стека
-            temp.pop(); //pop-удаляет последний элемент
+            cout << temp.top() << " "; //top-РІРµСЂС…РЅРёР№ СЌР»РµРјРµРЅС‚ СЃС‚РµРєР°
+            temp.pop(); //pop-СѓРґР°Р»СЏРµС‚ РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
         }
         cout << endl;
     }
@@ -127,7 +127,7 @@ void edit_student_information(Node* root, string surname) {
         for (int i = 0; i < 5; ++i) {
             int grade;
             cin >> grade;
-            root->student.grades->push(grade); //добавление новых оценок в стек
+            root->student.grades->push(grade); //РґРѕР±Р°РІР»РµРЅРёРµ РЅРѕРІС‹С… РѕС†РµРЅРѕРє РІ СЃС‚РµРє
         }
     }
     else if (surname < root->student.surname) {
@@ -176,7 +176,7 @@ int main() {
             cin >> student.surname;
             cout << "Enter group number: ";
             cin >> student.group_num;
-            student.grades = new stack<int>(); // новый стек для оценок
+            student.grades = new stack<int>(); // РЅРѕРІС‹Р№ СЃС‚РµРє РґР»СЏ РѕС†РµРЅРѕРє
             cout << "Enter grades: ";
             for (int i = 0; i < 5; ++i) {
                 int grade;
