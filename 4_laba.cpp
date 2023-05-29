@@ -3,13 +3,13 @@
 #include <stack>
 using namespace std;
 
-bool isOperator(char c) {
+bool isOperator(char c) {                //принимает символ c и проверяет, является ли он оператором (+, -, *, /)
     if (c == '+' || c == '-' || c == '/' || c == '*')
         return true;
     return false;
 }
 
-int getPrecedence(char c) {
+int getPrecedence(char c) {                 //принимает символ c и возвращает его приоритет(Операторы + и - имеют приоритет 1, а операторы * и / имеют приоритет 2.Все остальные символы, которые не являются операторами, имеют приоритет 0)
     if (c == '+' || c == '-')
         return 1;
     if (c == '*' || c == '/')
@@ -17,7 +17,7 @@ int getPrecedence(char c) {
     return 0;
 }
 
-string infixToPostfix(string infix) {
+string infixToPostfix(string infix) {        //принимает строку infix, содержащую инфиксное выражение, и преобразует его в постфиксную запись
     stack<char> operatorStack;
     string postfixExpression;
 
@@ -63,7 +63,7 @@ string infixToPostfix(string infix) {
     return postfixExpression;
 }
 
-double evaluatePostfix(string postfix) {
+double evaluatePostfix(string postfix) {          //принимает строку postfix,содержащую постфиксное выражение, и вычисляет его результат
     stack<double> operandStack;
 
     for (int i = 0; i < postfix.length(); i++) {
@@ -114,14 +114,14 @@ double evaluatePostfix(string postfix) {
 int main() {
     setlocale(0, "Ru");
     string infixExpression;
-    cout << "������� ��������� ���������: ";
+    cout << "Введите инфиксное выражение:  ";
     getline(cin, infixExpression);
 
     string postfixExpression = infixToPostfix(infixExpression);
-    cout << "��������� � ����������� ������: " << postfixExpression << endl;
+    cout << "Результат в постфиксной записи: " << postfixExpression << endl;
 
     double result = evaluatePostfix(postfixExpression);
-    cout << "��������� ���������� ��������� � ����������� �������: " << result << endl;
+    cout << "Результат вычисления выражения в постфиксной нотации:  " << result << endl;
 
     return 0;
 }
