@@ -1,5 +1,5 @@
 /* A10
-n=11, m=15, На основе связанных списков
+n=11, m=15, РќР° РѕСЃРЅРѕРІРµ СЃРІСЏР·Р°РЅРЅС‹С… СЃРїРёСЃРєРѕРІ
 */
 #include <iostream>
 #include <cmath>
@@ -73,15 +73,15 @@ void realizB() {
 
     int ss;
     tstk* p;
-    cout << "Введите искомый элемент" << endl;
+    cout << "Р’РІРµРґРёС‚Рµ РёСЃРєРѕРјС‹Р№ СЌР»РµРјРµРЅС‚" << endl;
     cin >> ss;
     while (ss != -1) {
         p = sv_search(ss, m, H);
         if (p == nullptr)
-            cout << "Нет элемента" << endl;
+            cout << "РќРµС‚ СЌР»РµРјРµРЅС‚Р°" << endl;
         else
             cout << p->inf << endl;
-        cout << "Введите искомый элемент" << endl;
+        cout << "Р’РІРµРґРёС‚Рµ РёСЃРєРѕРјС‹Р№ СЌР»РµРјРµРЅС‚" << endl;
         cin >> ss;
     }
     sv_delete(m, H);
