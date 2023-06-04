@@ -1,5 +1,8 @@
 /* B10
-Поля структуры:фамилия,возраст,рост
+РџРѕР»СЏ СЃС‚СЂСѓРєС‚СѓСЂС‹:С„Р°РјРёР»РёСЏ,СЂРѕСЃС‚,РІРѕР·СЂР°СЃС‚.
+РљР»СЋС‡РµРІРѕРµ РїРѕР»Рµ:Р РѕСЃС‚.
+n=8, M=10.
+РЎС…РµРјР° С…РµС€РёСЂРѕРІР°РЅРёСЏ: СЃ РїСЂРѕРёР·РІРѕР»СЊРЅРѕР№ Р°РґСЂРµСЃР°С†РёРµР№.
 */
 #include <iostream>
 #include <vector>
@@ -17,7 +20,7 @@ struct Person {
     Person(string _lastName, int _age, double _height) : lastName(_lastName), age(_age), height(_height) {}
 };
 
-//Хеш-функция с произвольной адресацией для определения индекса элемента в хеш-таблице
+//РҐРµС€-С„СѓРЅРєС†РёСЏ СЃ РїСЂРѕРёР·РІРѕР»СЊРЅРѕР№ Р°РґСЂРµСЃР°С†РёРµР№ РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ РёРЅРґРµРєСЃР° СЌР»РµРјРµРЅС‚Р° РІ С…РµС€-С‚Р°Р±Р»РёС†Рµ
 int hashFunction(double key, int tableSize) {
     int index = static_cast<int>(key) % tableSize;
     int step = 1;
@@ -29,57 +32,57 @@ int hashFunction(double key, int tableSize) {
 }
 
 int main() {
-    //создание исходного массива структур 
+    //СЃРѕР·РґР°РЅРёРµ РёСЃС…РѕРґРЅРѕРіРѕ РјР°СЃСЃРёРІР° СЃС‚СЂСѓРєС‚СѓСЂ  
     setlocale(0, "ru");
     vector<Person> array(8);
-    cout << "Введите информацию о людях:\n";
+    cout << "Г‚ГўГҐГ¤ГЁГІГҐ ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГѕ Г® Г«ГѕГ¤ГїГµ:\n";
     for (int i = 0; i < array.size(); i++) {
-        cout << "Человек #" << i + 1 << ":\n";
-        cout << "Фамилия: ";
+        cout << "Г—ГҐГ«Г®ГўГҐГЄ #" << i + 1 << ":\n";
+        cout << "Г”Г Г¬ГЁГ«ГЁГї: ";
         cin >> array[i].lastName;
-        cout << "Возраст: ";
+        cout << "Г‚Г®Г§Г°Г Г±ГІ: ";
         cin >> array[i].age;
-        cout << "Рост: ";
+        cout << "ГђГ®Г±ГІ: ";
         cin >> array[i].height;
         cout << "\n";
     }
 
-    //создание хеш-таблицы
+    //СЃРѕР·РґР°РЅРёРµ С…РµС€-С‚Р°Р±Р»РёС†С‹
     const int tableSize = 10;
     vector<list<Person>> hashTable(tableSize);
 
-    //заполнение хеш-таблицы
+    //Р·Р°РїРѕР»РЅРµРЅРёРµ С…РµС€-С‚Р°Р±Р»РёС†С‹
     for (int i = 0; i < array.size(); i++) {
         int index = hashFunction(array[i].height, tableSize);
         hashTable[index].push_back(array[i]);
     }
 
 
-    //вывод исходного массива
-    cout << "Исходный массив:\n";
+    //РІС‹РІРѕРґ РёСЃС…РѕРґРЅРѕРіРѕ РјР°СЃСЃРёРІР°
+    cout << "Г€Г±ГµГ®Г¤Г­Г»Г© Г¬Г Г±Г±ГЁГў:\n";
     for (int i = 0; i < array.size(); i++) {
-        cout << "Человек #" << i + 1 << ":\n";
-        cout << "Фамилия: " << array[i].lastName << "\n";
-        cout << "Возраст: " << array[i].age << "\n";
-        cout << "Рост: " << array[i].height << "\n\n";
+        cout << "Р§РµР»РѕРІРµРє #" << i + 1 << ":\n";
+        cout << "Р¤Р°РјРёР»РёСЏ: " << array[i].lastName << "\n";
+        cout << "Р’РѕР·СЂР°СЃС‚: " << array[i].age << "\n";
+        cout << "Р РѕСЃС‚: " << array[i].height << "\n\n";
     }
     cout << "\n";
 
-    //вывод хеш-таблицы
-    cout << "Хеш-таблица:\n";
+    //РІС‹РІРѕРґ С…РµС€-С‚Р°Р±Р»РёС†С‹
+    cout << "РСЃС…РѕРґРЅС‹Р№ РјР°СЃСЃРёРІ:\n";
     for (int i = 0; i < hashTable.size(); i++) {
-        cout << "Индекс " << i << ":\n";
+       cout << "РРЅРґРµРєСЃ " << i << ":\n";
         for (const Person& person : hashTable[i]) {
-            cout << "Фамилия: " << person.lastName << "\n";
-            cout << "Возраст: " << person.age << "\n";
-            cout << "Рост: " << person.height << "\n\n";
+            cout << "Р¤Р°РјРёР»РёСЏ: " << person.lastName << "\n";
+            cout << "Р’РѕР·СЂР°СЃС‚: " << person.age << "\n";
+            cout << "Р РѕСЃС‚: " << person.height << "\n\n";
         }
     }
     cout << "\n";
 
-    //поиск элемента по росту в хеш-таблице
+    //РїРѕРёСЃРє СЌР»РµРјРµРЅС‚Р° РїРѕ СЂРѕСЃС‚Сѓ РІ С…РµС€-С‚Р°Р±Р»РёС†Рµ
     double searchHeight;
-    cout << "Введите рост для поиска: ";
+    cout << "Г‚ГўГҐГ¤ГЁГІГҐ Г°Г®Г±ГІ Г¤Г«Гї ГЇГ®ГЁГ±ГЄГ : ";
     cin >> searchHeight;
 
     int searchIndex = hashFunction(searchHeight, tableSize);
@@ -87,15 +90,15 @@ int main() {
     for (const Person& person : hashTable[searchIndex]) {
         if (person.height == searchHeight) {
             found = true;
-            cout << "Найденный элемент:\n";
-            cout << "Фамилия: " << person.lastName << "\n";
-            cout << "Возраст: " << person.age << "\n";
-            cout << "Рост: " << person.height << "\n\n";
+            cout << "РќР°Р№РґРµРЅРЅС‹Р№ СЌР»РµРјРµРЅС‚:\n";
+            cout << "Р¤Р°РјРёР»РёСЏ: " << person.lastName << "\n";
+            cout << "Р’РѕР·СЂР°СЃС‚: " << person.age << "\n";
+            cout << "Р РѕСЃС‚: " << person.height << "\n\n";
         }
     }
 
     if (!found) {
-        cout << "Элемент с указанным ростом не найден в хеш-таблице.\n";
+        cout << "Р­Р»РµРјРµРЅС‚ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј СЂРѕСЃС‚РѕРј РЅРµ РЅР°Р№РґРµРЅ РІ С…РµС€-С‚Р°Р±Р»РёС†Рµ.\n";
     }
 
     return 0;
